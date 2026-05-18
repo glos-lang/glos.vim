@@ -9,7 +9,7 @@ let b:did_indent = 1
 setlocal nolisp
 setlocal autoindent
 setlocal indentexpr=GlosIndent(v:lnum)
-setlocal indentkeys+=<:>,0=},0=],0=),0=*
+setlocal indentkeys+=<:>,0=},0=],0=),0=*,=case
 
 let b:undo_indent = "setlocal autoindent< indentexpr< indentkeys< lisp<"
 
@@ -29,11 +29,11 @@ function! GlosIndent(lnum)
 
     let l:ind = l:previ
 
-    if l:prevl =~ '[({\[]\s*$'
+    if l:prevl =~ '[({\[]\s*$' || l:prevl =~# '^\s*case\>'
         let l:ind += shiftwidth()
     endif
 
-    if l:thisl =~ '^\s*[)}\]]'
+    if l:thisl =~ '^\s*[)}\]]' || l:thisl =~# '^\s*case\>'
         let l:ind -= shiftwidth()
     endif
 
