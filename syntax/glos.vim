@@ -12,7 +12,7 @@ setlocal formatoptions+=cro/
 syntax clear
 syntax match glosConstant "\<[0-9]\+\>"
 syntax match glosComment "//.*"
-syntax match glosKeyword "#assert\>"
+syntax match glosKeyword "#[A-z_]\+\>"
 syntax keyword glosType bool char i8 i16 i32 i64 u8 u16 u32 u64 rawptr string
 syntax keyword glosKeyword struct if else for case defer break continue return extern print
 syntax keyword glosConstant true false null
