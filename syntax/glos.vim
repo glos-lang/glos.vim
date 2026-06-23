@@ -16,8 +16,8 @@ syntax match glosKeyword "#[A-z_]\+\>"
 syntax match glosField "\.\s*\a\w*\>"hs=s+1
 syntax match glosSpread "\.\.\."
 syntax keyword glosType bool char i8 i16 i32 i64 u8 u16 u32 u64 rawptr string any
-syntax keyword glosKeyword enum union struct if else for case defer break continue return extern
-syntax keyword glosConstant true false null
+syntax keyword glosKeyword enum union struct inline distinct if else for case defer break continue return extern
+syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
 
 syntax match glosStringEscapeInvalid '\\.' contained
