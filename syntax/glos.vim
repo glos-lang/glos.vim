@@ -10,11 +10,19 @@ setlocal commentstring=//%s
 setlocal formatoptions+=cro/
 
 syntax clear
+syntax match glosOperator /[-+*/%<>=!~&|]/
 syntax match glosConstant "\<[0-9]\+\>"
 syntax match glosComment "//.*"
 syntax match glosKeyword "#[A-z_]\+\>"
-syntax match glosField "\.\s*\a\w*\>"hs=s+1
-syntax match glosSpread "\.\.\."
+syntax match glosDelimiter "[,;:]\|->"
+
+syntax match glosField "\<\a\w*\>" contained
+syntax match glosOperator "\." skipwhite nextgroup=glosField
+syntax match glosOperator "\.\."
+syntax match glosOperator "\.\.\."
+syntax match glosOperator ":="
+syntax match glosFunction "\<\a\w*\s*("he=e-1
+
 syntax keyword glosType bool char i8 i16 i32 i64 u8 u16 u32 u64 rawptr string any
 syntax keyword glosKeyword enum union struct inline distinct if else for case defer break continue return extern
 syntax keyword glosConstant true false null this
@@ -29,11 +37,13 @@ syntax region glosInterpolation contained contains=TOP matchgroup=glosStringEsca
 
 highlight! link glosType Type
 highlight! link glosField Identifier
-highlight! link glosString TSString
+highlight! link glosString String
 highlight! link glosKeyword Keyword
 highlight! link glosComment Comment
 highlight! link glosConstant Number
 highlight! link glosOperator Operator
+highlight! link glosFunction Function
+highlight! link glosDelimiter Delimiter
 highlight! link glosStringEscape SpecialChar
 highlight! link glosStringEscapeInvalid Error
 
