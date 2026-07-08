@@ -21,11 +21,11 @@ syntax match glosField "\<\a\w*\>" contained
 syntax match glosOperator "\." skipwhite nextgroup=glosField,glosFunction
 syntax match glosOperator "\.\."
 syntax match glosOperator "\.\.\."
-syntax match glosOperator ":="
+syntax match glosOperator ":\s*="
 syntax match glosFunction "\<\a\w*\s*("he=e-1
 
-syntax keyword glosType bool char i8 i16 i32 i64 u8 u16 u32 u64 rawptr string any
-syntax keyword glosKeyword enum union struct inline distinct operator if else for case defer break continue return extern
+syntax keyword glosType bool char i8 i16 i32 i64 u8 u16 u32 u64 rawptr string
+syntax keyword glosKeyword enum trait union struct inline distinct if else for case defer break continue return extern
 syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
 
