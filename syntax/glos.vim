@@ -10,7 +10,7 @@ setlocal commentstring=//%s
 setlocal formatoptions+=cro/
 
 syntax clear
-syntax match glosOperator /[-+*/%<>=!~&|]/
+syntax match glosOperator /[-+*/%<>=!~&|\$]/
 syntax match glosConstant "\<[0-9]\+\>"
 syntax match glosDelimiter "[,;:]\|->"
 
@@ -32,9 +32,9 @@ syntax keyword glosOperator sizeof typeof
 syntax match glosStringEscapeInvalid '\\.' contained
 syntax match glosStringEscape /\\e\|\\n\|\\r\|\\t\|\\0\|\\"\|\\'\|\\\\\|\\{/ contained
 syntax region glosBraces contains=TOP matchgroup=NONE start='{' end='}'
-syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape,glosInterpolation start='"' skip='\\\\\|\\"' end='"'
+syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape,glosStringInterpolation start='"' skip='\\\\\|\\"' end='"'
 syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape start="'" skip="\\\\\|\\'" end="'"
-syntax region glosInterpolation contained contains=TOP matchgroup=glosStringEscape start='\\{' end='}'
+syntax region glosStringInterpolation contained contains=TOP matchgroup=glosStringEscape start='\\{' end='}'
 
 highlight! link glosType Type
 highlight! link glosField Identifier
