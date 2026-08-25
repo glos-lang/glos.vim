@@ -11,7 +11,8 @@ setlocal formatoptions+=cro/
 
 syntax clear
 syntax match glosOperator /[-+*/%<>=!~&|\$]/
-syntax match glosConstant "\<[0-9]\+\>"
+syntax match glosConstant "\<[0-9][0-9_]*\(\.[0-9][0-9_]*\)\?\>"
+syntax match glosConstant "\<0x[0-9a-fA-F]\+\>"
 syntax match glosDelimiter "[,;:]\|->"
 
 syntax match glosComment "//.*"
@@ -24,7 +25,7 @@ syntax match glosOperator "\.\.\."
 syntax match glosOperator ":\s*="
 syntax match glosFunction "\<\a\w*\s*("he=e-1
 
-syntax keyword glosType bool char i8 i16 i32 i64 u8 u16 u32 u64 rawptr string
+syntax keyword glosType bool char s8 s16 s32 s64 u8 u16 u32 u64 f32 f64 rawptr string
 syntax keyword glosKeyword enum trait union struct inline distinct if else for case defer break continue return extern
 syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
