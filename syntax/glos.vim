@@ -10,23 +10,27 @@ setlocal commentstring=//%s
 setlocal formatoptions+=cro/
 
 syntax clear
-syntax match glosOperator /[-+*/%<>=!~&|\$]/
+syntax match glosOperator /[-+*/%<>=!~&|\$\^]/
 syntax match glosConstant "\<[0-9][0-9_]*\(\.[0-9][0-9_]*\)\?\>"
 syntax match glosConstant "\<0x[0-9a-fA-F_]\+\>"
 syntax match glosDelimiter "[,;:]\|->"
 
 syntax match glosComment "//.*"
-syntax match glosKeyword "#\(if\|assert\|link\|import\|static\|private\|library\|main\|platform\|caller_location\)\>"
+syntax region glosNComment contains=glosNComment start="/\*" end="\*/" fold
+syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|private\|library\|main\|platform\|\|location\|caller_location\)\>"
 
 syntax match glosField "\<\a\w*\>" contained
-syntax match glosOperator "\." skipwhite nextgroup=glosField,glosFunction
+syntax match glosOperator "\." skipwhite skipnl nextgroup=glosField,glosFunction
 syntax match glosOperator "\.\."
 syntax match glosOperator "\.\.\."
 syntax match glosOperator ":\s*="
 syntax match glosFunction "\<\a\w*\s*("he=e-1
 
+syntax match glosKeyword "\<operator\>" skipwhite skipnl nextgroup=glosOperatorEx
+syntax match glosOperatorEx /\[.\{-}\]/ contained
+
 syntax keyword glosType bool char s8 s16 s32 s64 u8 u16 u32 u64 f32 f64 rawptr string
-syntax keyword glosKeyword enum trait union struct inline distinct operator if else for case defer break continue return extern
+syntax keyword glosKeyword enum trait union struct inline noreturn distinct if then else for case defer break continue return extern
 syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
 
@@ -42,9 +46,11 @@ highlight! link glosField Identifier
 highlight! link glosString String
 highlight! link glosKeyword Keyword
 highlight! link glosComment Comment
+highlight! link glosNComment Comment
 highlight! link glosConstant Number
-highlight! link glosOperator Operator
 highlight! link glosFunction Function
+highlight! link glosOperator Operator
+highlight! link glosOperatorEx Operator
 highlight! link glosDelimiter Delimiter
 highlight! link glosStringEscape SpecialChar
 highlight! link glosStringEscapeInvalid Error
