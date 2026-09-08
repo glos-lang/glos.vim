@@ -12,12 +12,14 @@ setlocal formatoptions+=cro/
 syntax clear
 syntax match glosOperator /[-+*/%<>=!~&|\$\^]/
 syntax match glosConstant "\<[0-9][0-9_]*\(\.[0-9][0-9_]*\)\?\>"
-syntax match glosConstant "\<0x[0-9a-fA-F_]\+\>"
+syntax match glosConstant "\<0b[0-1_]\+\>"
+syntax match glosConstant "\<0o[0-7_]\+\>"
+syntax match glosConstant "\<0[xh][0-9a-fA-F_]\+\>"
 syntax match glosDelimiter "[,;:]\|->"
 
 syntax match glosComment "//.*"
 syntax region glosNComment contains=glosNComment start="/\*" end="\*/" fold
-syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|private\|library\|main\|platform\|\|location\|caller_location\)\>"
+syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|private\|library\|reference\|\|location\|caller_location\|main\|platform\|hash_info\)\>"
 
 syntax match glosField "\<\a\w*\>" contained
 syntax match glosOperator "\." skipwhite skipnl nextgroup=glosField,glosFunction
@@ -30,7 +32,7 @@ syntax match glosKeyword "\<operator\>" skipwhite skipnl nextgroup=glosOperatorE
 syntax match glosOperatorEx /\[.\{-}\]/ contained
 
 syntax keyword glosType bool char s8 s16 s32 s64 u8 u16 u32 u64 f32 f64 rawptr string
-syntax keyword glosKeyword enum trait union struct inline noreturn distinct if then else for case defer break continue return extern
+syntax keyword glosKeyword enum trait union struct range inline noreturn distinct if then else for case defer break continue return extern
 syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
 
