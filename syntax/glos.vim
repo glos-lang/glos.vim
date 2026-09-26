@@ -10,7 +10,7 @@ setlocal commentstring=//%s
 setlocal formatoptions+=cro/
 
 syntax clear
-syntax match glosOperator /[-+*/%<>=!~&|\$\^]/
+syntax match glosOperator /[-+*/%<>=!~&|\$\^?]/
 syntax match glosConstant "\<[0-9][0-9_]*\(\.[0-9][0-9_]*\)\?\>"
 syntax match glosConstant "\<0b[0-1_]\+\>"
 syntax match glosConstant "\<0o[0-7_]\+\>"
@@ -19,9 +19,9 @@ syntax match glosDelimiter "[,;:]\|->"
 
 syntax match glosComment "//.*"
 syntax region glosNComment contains=glosNComment start="/\*" end="\*/" fold
-syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|private\|library\|reference\|\|location\|caller_location\|main\|platform\|hash_info\)\>"
+syntax match glosKeyword "#\(if\|assert\|hook\|link\|embed\|import\|static\|private\|library\|reference\|\|location\|caller_location\|main\|platform\)\>"
 
-syntax match glosField "\<\a\w*\>" contained
+syntax match glosField "\<[A-z_]\w*\>" contained
 syntax match glosOperator "\." skipwhite skipnl nextgroup=glosField,glosFunction
 syntax match glosOperator "\.\."
 syntax match glosOperator "\.\.\."
@@ -31,13 +31,13 @@ syntax match glosFunction "\<\a\w*\s*("he=e-1
 syntax match glosKeyword "\<operator\>" skipwhite skipnl nextgroup=glosOperatorEx
 syntax match glosOperatorEx /\[.\{-}\]/ contained
 
-syntax keyword glosType bool char s8 s16 s32 s64 u8 u16 u32 u64 f32 f64 rawptr string
-syntax keyword glosKeyword enum trait union struct range inline noreturn distinct if then else for case defer break continue return extern
+syntax keyword glosType bool rune s8 s16 s32 s64 u8 u16 u32 u64 f32 f64 rawptr error string
+syntax keyword glosKeyword map enum trait union struct range inline noreturn distinct if then else for case defer break continue return extern
 syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
 
 syntax match glosStringEscapeInvalid '\\.' contained
-syntax match glosStringEscape /\\e\|\\n\|\\r\|\\t\|\\0\|\\"\|\\'\|\\\\\|\\{/ contained
+syntax match glosStringEscape /\\e\|\\n\|\\r\|\\t\|\\0\|\\"\|\\'\|\\\\\|\\{\|\\u\x\{4}\|\\U\x\{8}/ contained
 syntax region glosBraces contains=TOP matchgroup=NONE start='{' end='}'
 syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape,glosStringInterpolation start='"' skip='\\\\\|\\"' end='"'
 syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape start="'" skip="\\\\\|\\'" end="'"
