@@ -11,7 +11,7 @@ setlocal formatoptions+=cro/
 
 syntax clear
 syntax match glosOperator /[-+*/%<>=!~&|\$\^?]/
-syntax match glosConstant "\<[0-9][0-9_]*\(\.[0-9][0-9_]*\)\?\>"
+syntax match glosConstant "\<[0-9][0-9_]*\(\.[0-9][0-9_]*\)\?\(e[0-9][0-9_]*\)\?\>"
 syntax match glosConstant "\<0b[0-1_]\+\>"
 syntax match glosConstant "\<0o[0-7_]\+\>"
 syntax match glosConstant "\<0[xh][0-9a-fA-F_]\+\>"
@@ -37,7 +37,7 @@ syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
 
 syntax match glosStringEscapeInvalid '\\.' contained
-syntax match glosStringEscape /\\e\|\\n\|\\r\|\\t\|\\0\|\\"\|\\'\|\\\\\|\\{\|\\u\x\{4}\|\\U\x\{8}/ contained
+syntax match glosStringEscape /\\e\|\\n\|\\r\|\\t\|\\v\|\\f\|\\0\|\\"\|\\'\|\\\\\|\\{\|\\u\x\{4}\|\\U\x\{8}/ contained
 syntax region glosBraces contains=TOP matchgroup=NONE start='{' end='}'
 syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape,glosStringInterpolation start='"' skip='\\\\\|\\"' end='"'
 syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape start="'" skip="\\\\\|\\'" end="'"
