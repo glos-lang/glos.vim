@@ -17,10 +17,11 @@ syntax match glosConstant "\<0o[0-7_]\+\>"
 syntax match glosConstant "\<0[xh][0-9a-fA-F_]\+\>"
 syntax match glosDelimiter "[,;:]\|->"
 
+syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|private\|library\|reference\|\|location\|caller_location\|main\|platform\)\>"
 syntax match glosComment "//.*"
 syntax region glosNComment contains=glosNComment start="/\*" end="\*/" fold
-syntax match glosKeyword "#\(if\|assert\|hook\|link\|embed\|import\|static\|private\|library\|reference\|\|location\|caller_location\|main\|platform\)\>"
 
+syntax match glosHook "@\<[A-z_]\w*\>"
 syntax match glosField "\<[A-z_]\w*\>" contained
 syntax match glosOperator "\." skipwhite skipnl nextgroup=glosField,glosFunction
 syntax match glosOperator "\.\."
@@ -44,6 +45,7 @@ syntax region glosString contains=glosStringEscapeInvalid,glosStringEscape start
 syntax region glosStringInterpolation contained contains=TOP matchgroup=glosStringEscape start='\\{' end='}'
 
 highlight! link glosType Type
+highlight! link glosHook Constant
 highlight! link glosField Identifier
 highlight! link glosString String
 highlight! link glosKeyword Keyword
