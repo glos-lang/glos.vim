@@ -17,7 +17,7 @@ syntax match glosConstant "\<0o[0-7_]\+\>"
 syntax match glosConstant "\<0[xh][0-9a-fA-F_]\+\>"
 syntax match glosDelimiter "[,;:]\|->"
 
-syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|private\|library\|reference\|\|location\|caller_location\|main\|platform\)\>"
+syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|thread\|private\|library\|reference\|\|location\|caller_location\|main\|platform\)\>"
 syntax match glosComment "//.*"
 syntax region glosNComment contains=glosNComment start="/\*" end="\*/" fold
 
@@ -27,7 +27,7 @@ syntax match glosOperator "\." skipwhite skipnl nextgroup=glosField,glosFunction
 syntax match glosOperator "\.\."
 syntax match glosOperator "\.\.\."
 syntax match glosOperator ":\s*="
-syntax match glosFunction "\<\a\w*\s*("he=e-1
+syntax match glosFunction "\<[A-z_]\w*\s*("he=e-1
 
 syntax match glosKeyword "\<operator\>" skipwhite skipnl nextgroup=glosOperatorEx
 syntax match glosOperatorEx /\[.\{-}\]/ contained
