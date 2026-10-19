@@ -33,7 +33,7 @@ syntax match glosKeyword "\<operator\>" skipwhite skipnl nextgroup=glosOperatorE
 syntax match glosOperatorEx /\[.\{-}\]/ contained
 
 syntax keyword glosType bool rune s8 s16 s32 s64 u8 u16 u32 u64 f32 f64 rawptr error string
-syntax keyword glosKeyword map enum trait union struct range inline noreturn distinct if then else for case defer break continue return extern
+syntax keyword glosKeyword map enum trait union struct range inline distinct if then else for case defer break continue return extern
 syntax keyword glosConstant true false null this
 syntax keyword glosOperator sizeof typeof
 
