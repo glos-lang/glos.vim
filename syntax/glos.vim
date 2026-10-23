@@ -17,12 +17,13 @@ syntax match glosConstant "\<0o[0-7_]\+\>"
 syntax match glosConstant "\<0[xh][0-9a-fA-F_]\+\>"
 syntax match glosDelimiter "[,;:]\|->"
 
-syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|thread\|private\|library\|reference\|\|location\|caller_location\|main\|platform\)\>"
+syntax match glosKeyword "#\(if\|assert\|link\|embed\|import\|static\|thread\|private\|linkopt\|library\|reference\|\|location\|caller_location\|main\|platform\)\>"
 syntax match glosComment "//.*"
 syntax region glosNComment contains=glosNComment start="/\*" end="\*/" fold
 
 syntax match glosHook "@\<[A-z_]\w*\>"
 syntax match glosField "\<[A-z_]\w*\>" contained
+syntax match glosString "\\.*"
 syntax match glosOperator "\." skipwhite skipnl nextgroup=glosField,glosFunction
 syntax match glosOperator "\.\."
 syntax match glosOperator "\.\.\."
